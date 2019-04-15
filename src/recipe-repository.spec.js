@@ -7,10 +7,62 @@
 
 'use strict';
 
+
 describe('RecipeRepository', () => {
 
+    let recipe1;
+    let recipe2;
+    let recipe3;
+
+    beforeEach(() => {
+
+        recipe1 = new Recipe(
+            'Tiramisu',
+            'dessert',
+            [
+                'biscuit',
+                'chocolate',
+                'coffee',
+                'milk'
+            ]
+        );
+        recipe2 = new Recipe(
+            'Pizza',
+            'meal',
+            [
+                'cheese',
+                'egg',
+                'meat',
+                'tomato'
+            ]
+        );
+        recipe3 = new Recipe(
+            'Magic Salad',
+            'salad',
+            [
+                'cheese',
+                'tomato'
+            ]
+        );
+
+    });
+
     it.skip('should add recipes', () => {
-        throw new Error('😱 Not implemented yet!');
+
+        const recipeRepository = new RecipeRepository();
+
+        recipeRepository.addRecipe(recipe1);
+        recipeRepository.addRecipe(recipe2);
+        recipeRepository.addRecipe(recipe3);
+
+        const recipeList = recipeRepository.getRecipeList();
+
+        expect(recipeList).toEqual([
+            recipe1,
+            recipe2,
+            recipe3
+        ]);
+
     });
 
     it.skip('should remove recipes', () => {
