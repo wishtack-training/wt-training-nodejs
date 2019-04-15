@@ -49,7 +49,7 @@ describe('RecipeRepository', () => {
 
     });
 
-    it.skip('should add recipes', () => {
+    it('should add recipes', () => {
 
         const recipeRepository = new RecipeRepository();
 
@@ -86,8 +86,6 @@ describe('RecipeRepository', () => {
 
     });
 
-    it.skip('should filter recipes', () => {
-        throw new Error('😱 Not implemented yet!');
-    });
+    it.todo('should filter recipes');
 
 });

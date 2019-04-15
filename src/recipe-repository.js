@@ -1,17 +1,16 @@
 class RecipeRepository {
 
-    /**
-     * @deprecated WIP
-     */
-    addRecipe(recipe) {
-        throw new Error('😱 Not implemented yet!');
+    constructor() {
+        this.recipeList = [];
     }
 
-    /**
-     * @deprecated WIP
-     */
+
+    addRecipe(recipe) {
+        this.recipeList.push(recipe);
+    }
+
     getRecipeList() {
-        throw new Error('😱 Not implemented yet!');
+        return this.recipeList;
     }
 
     /**
