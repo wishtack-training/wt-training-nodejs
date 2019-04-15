@@ -66,7 +66,22 @@ describe('RecipeRepository', () => {
     });
 
     it.skip('should remove recipes', () => {
-        throw new Error('😱 Not implemented yet!');
+
+        const recipeRepository = new RecipeRepository();
+
+        recipeRepository.addRecipe(recipe1);
+        recipeRepository.addRecipe(recipe2);
+        recipeRepository.addRecipe(recipe3);
+
+        recipeRepository.removeRecipe(recipe2);
+
+        const recipeList = recipeRepository.getRecipeList();
+
+        expect(recipeList).toEqual([
+            recipe1,
+            recipe3
+        ]);
+
     });
 
     it.skip('should filter recipes', () => {
