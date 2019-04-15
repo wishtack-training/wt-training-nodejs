@@ -67,7 +67,7 @@ describe('RecipeRepository', () => {
 
     });
 
-    it.skip('should remove recipes', () => {
+    it('should remove recipes', () => {
 
         const recipeRepository = new RecipeRepository();
 

@@ -13,11 +13,9 @@ class RecipeRepository {
         return this.recipeList;
     }
 
-    /**
-     * @deprecated WIP
-     */
     removeRecipe(recipe) {
-        throw new Error('😱 Not implemented yet!');
+        this.recipeList = this.recipeList
+            .filter(_recipe => _recipe !== recipe);
     }
 
 }
