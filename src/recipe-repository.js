@@ -1,12 +1,12 @@
+
 class RecipeRepository {
 
     constructor() {
         this.recipeList = [];
     }
 
-
     addRecipe(recipe) {
-        this.recipeList.push(recipe);
+        this.recipeList = [...this.recipeList, recipe]
     }
 
     getRecipeList() {

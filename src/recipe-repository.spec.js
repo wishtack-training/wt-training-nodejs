@@ -53,11 +53,15 @@ describe('RecipeRepository', () => {
 
         const recipeRepository = new RecipeRepository();
 
+        const emptyRecipeList = recipeRepository.getRecipeList();
+
         recipeRepository.addRecipe(recipe1);
         recipeRepository.addRecipe(recipe2);
         recipeRepository.addRecipe(recipe3);
 
         const recipeList = recipeRepository.getRecipeList();
+
+        expect(emptyRecipeList).toEqual([]);
 
         expect(recipeList).toEqual([
             recipe1,
