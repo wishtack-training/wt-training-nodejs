@@ -1,14 +1,5 @@
-/**
- *
- * (c) 2013-2018 Wishtack
- *
- * $Id: $
- */
-
-'use strict';
-
-const { RecipeRepository } = require('./recipe-repository');
-const { Recipe } = require('./recipe');
+import { Recipe } from './recipe';
+import { RecipeRepository } from './recipe-repository';
 
 describe('RecipeRepository', () => {
 

@@ -1,9 +1,7 @@
+import { Recipe } from './recipe';
 
-class RecipeRepository {
-
-    constructor() {
-        this.recipeList = [];
-    }
+export class RecipeRepository {
+    recipeList: Recipe[] = [];
 
     addRecipe(recipe) {
         this.recipeList = [...this.recipeList, recipe]
@@ -19,7 +17,3 @@ class RecipeRepository {
     }
 
 }
-
-module.exports = {
-    RecipeRepository
-};
