@@ -7,40 +7,8 @@
 
 'use strict';
 
-
-class Recipe {
-
-    constructor(title, type, ingredientList) {
-        this.title = title;
-        this.type = type;
-        this.ingredientList = ingredientList;
-    }
-
-}
-
-class RecipeRepository {
-
-    /**
-     * @deprecated WIP
-     */
-    addRecipe(recipe) {
-        throw new Error('😱 Not implemented yet!');
-    }
-
-    /**
-     * @deprecated WIP
-     */
-    getRecipeList() {
-        throw new Error('😱 Not implemented yet!');
-    }
-
-    /**
-     * @deprecated WIP
-     */
-    removeRecipe(recipe) {
-        throw new Error('😱 Not implemented yet!');
-    }
-}
+const { RecipeRepository } = require('./recipe-repository');
+const { Recipe } = require('./recipe');
 
 describe('RecipeRepository', () => {
 
