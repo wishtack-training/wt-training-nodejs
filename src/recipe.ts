@@ -1,4 +1,7 @@
-class Recipe {
+export class Recipe {
+    title;
+    type;
+    ingredientList;
 
     constructor(title, type, ingredientList) {
         this.title = title;
@@ -7,7 +10,3 @@ class Recipe {
     }
 
 }
-
-module.exports = {
-    Recipe
-};
