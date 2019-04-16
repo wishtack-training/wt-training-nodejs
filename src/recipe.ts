@@ -6,11 +6,12 @@ export enum RecipeType {
 }
 
 export class Recipe {
+
     title: string;
     type: RecipeType;
     ingredientList: string[];
 
-    constructor(title: string, type: RecipeType, ingredientList: string[]) {
+    constructor({title, type, ingredientList}: { title: string, type: RecipeType, ingredientList: string[] }) {
         this.title = title;
         this.type = type;
         this.ingredientList = ingredientList;

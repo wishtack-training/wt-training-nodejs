@@ -3,40 +3,41 @@ import { RecipeRepository } from './recipe-repository';
 
 describe('RecipeRepository', () => {
 
-    let recipe1;
-    let recipe2;
-    let recipe3;
+    let recipe1: Recipe;
+    let recipe2: Recipe;
+    let recipe3: Recipe;
 
     beforeEach(() => {
 
-        recipe1 = new Recipe(
-            'Tiramisu',
-            RecipeType.Dessert,
-            [
+        recipe1 = new Recipe({
+            title: 'Tiramisu',
+            type: RecipeType.Dessert,
+            ingredientList: [
                 'biscuit',
                 'chocolate',
                 'coffee',
                 'milk'
             ]
-        );
-        recipe2 = new Recipe(
-            'Pizza',
-            RecipeType.Main,
-            [
+        });
+
+        recipe2 = new Recipe({
+            title: 'Pizza',
+            type: RecipeType.Main,
+            ingredientList: [
                 'cheese',
                 'egg',
                 'meat',
                 'tomato'
             ]
-        );
-        recipe3 = new Recipe(
-            'Magic Salad',
-            RecipeType.Salad,
-            [
+        });
+        recipe3 = new Recipe({
+            title: 'Magic Salad',
+            type: RecipeType.Salad,
+            ingredientList: [
                 'cheese',
                 'tomato'
             ]
-        );
+        });
 
     });
 
