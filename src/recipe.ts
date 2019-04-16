@@ -1,9 +1,16 @@
-export class Recipe {
-    title;
-    type;
-    ingredientList;
 
-    constructor(title, type, ingredientList) {
+export enum RecipeType {
+    Salad = 'salad',
+    Main = 'main',
+    Dessert = 'dessert'
+}
+
+export class Recipe {
+    title: string;
+    type: RecipeType;
+    ingredientList: string[];
+
+    constructor(title: string, type: RecipeType, ingredientList: string[]) {
         this.title = title;
         this.type = type;
         this.ingredientList = ingredientList;

@@ -1,4 +1,4 @@
-import { Recipe } from './recipe';
+import { Recipe, RecipeType } from './recipe';
 import { RecipeRepository } from './recipe-repository';
 
 describe('RecipeRepository', () => {
@@ -11,7 +11,7 @@ describe('RecipeRepository', () => {
 
         recipe1 = new Recipe(
             'Tiramisu',
-            'dessert',
+            RecipeType.Dessert,
             [
                 'biscuit',
                 'chocolate',
@@ -21,7 +21,7 @@ describe('RecipeRepository', () => {
         );
         recipe2 = new Recipe(
             'Pizza',
-            'meal',
+            RecipeType.Main,
             [
                 'cheese',
                 'egg',
@@ -31,7 +31,7 @@ describe('RecipeRepository', () => {
         );
         recipe3 = new Recipe(
             'Magic Salad',
-            'salad',
+            RecipeType.Salad,
             [
                 'cheese',
                 'tomato'
