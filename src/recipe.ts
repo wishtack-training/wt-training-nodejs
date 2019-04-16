@@ -1,4 +1,3 @@
-
 export enum RecipeType {
     Salad = 'salad',
     Main = 'main',
@@ -11,10 +10,10 @@ export class Recipe {
     type: RecipeType;
     ingredientList: string[];
 
-    constructor({title, type, ingredientList}: { title: string, type: RecipeType, ingredientList: string[] }) {
-        this.title = title;
-        this.type = type;
-        this.ingredientList = ingredientList;
+    constructor(args: Partial<Recipe> = {}) {
+        this.title = args.title;
+        this.type = args.type;
+        this.ingredientList = args.ingredientList;
     }
 
 }
