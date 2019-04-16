@@ -14,41 +14,10 @@ interface NodemonConfig {
     exec: string;
 }
 
-function getDataSync() {
-    const nodemonFilePath = path.join(__dirname, '..', 'nodemon.json');
-
-    const nodemon: NodemonConfig = JSON.parse(
-        readFileSync(nodemonFilePath).toString()
-    );
-
-    const indexPath = nodemon.exec.split(' ')[1];
-
-    return readFileSync(indexPath).toString();
-}
-
-interface GetDataCallback {
-    (err, data: string): void;
-}
-
 function readFileAsString(filePath): Promise<string> {
 
     return promisifiedReadFile(filePath)
         .then(data => data.toString());
-
-    // return new Promise(((resolve, reject) => {
-    //
-    //     readFile(filePath, (err, data) => {
-    //
-    //         if (err) {
-    //             reject(err);
-    //             return;
-    //         }
-    //
-    //         resolve(data.toString());
-    //
-    //     })
-    //
-    // }));
 
 }
 
