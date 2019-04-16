@@ -30,7 +30,7 @@ interface GetDataCallback {
     (err, data: string): void;
 }
 
-function myReadFile(filePath): Promise<string> {
+function readFileAsString(filePath): Promise<string> {
 
     return promisifiedReadFile(filePath)
         .then(data => data.toString());
@@ -52,19 +52,17 @@ function myReadFile(filePath): Promise<string> {
 
 }
 
-function getDataWithPromise(): Promise<string> {
+async function getDataWithPromise(): Promise<string> {
 
     const nodemonFilePath = path.join(__dirname, '..', 'nodemon.json');
 
-    return myReadFile(nodemonFilePath)
-        .then(nodemonString => JSON.parse(nodemonString) as NodemonConfig)
-        .then(nodemon => {
+    const nodemonString = await readFileAsString(nodemonFilePath);
 
-            const indexPath = nodemon.exec.split(' ')[1];
+    const nodemon = JSON.parse(nodemonString) as NodemonConfig;
 
-            return myReadFile(indexPath);
+    const indexPath = nodemon.exec.split(' ')[0];
 
-        });
+    return readFileAsString(indexPath);
 
 }
 
@@ -93,26 +91,26 @@ function getDataWithCallback(callback: GetDataCallback) {
     });
 }
 
+const asyncHandler = (callback: (request: Request, response: Response)) => async (request: Request, response: Response) => {
+
+    try {
+        await callback(request, response)
+    }
+    catch (err) {
+        response.status(500);
+        response.send(err);
+    }
+
+};
+
 /* Routing. */
-app.get('/', (request: Request, response: Response) => {
+app.get('/', asyncHandler(async (request: Request, response: Response) => {
 
-    getDataWithPromise()
-        .then(data => response.send(data))
-        .catch(err => {
-            response.status(500);
-            response.send(err);
-        });
+    const data = await getDataWithPromise();
 
-    // getDataWithCallback((err, data) => {
-    //     if (err) {
-    //         response.status(500);
-    //         response.send(err);
-    //         return;
-    //     }
-    //
-    //     response.send(data);
-    // });
-});
+    response.send(data);
+
+}));
 
 /* Run server and listen on port 3000. */
 const server = app.listen(3000, () => {
