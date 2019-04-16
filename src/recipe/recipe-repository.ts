@@ -1,4 +1,4 @@
-import { from, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Database } from 'sqlite3';
 import { promisify } from 'util';

@@ -1,7 +1,36 @@
-import { interval, ReplaySubject } from 'rxjs';
-import { distinctUntilChanged, filter, map, retry, switchMap, take } from 'rxjs/operators';
+import { defer, interval, of, ReplaySubject, timer } from 'rxjs';
+import { distinctUntilChanged, filter, first, map, retry, shareReplay, switchMap, take } from 'rxjs/operators';
 import { Recipe } from './recipe/recipe';
 import { RecipeRepository } from './recipe/recipe-repository';
+
+
+function getConfig() {
+    console.log('get config');
+    return of({
+        apiUrl: 'https://aws.google.com'
+    });
+}
+
+// const config$ = defer(getConfig)
+//     .pipe(shareReplay());
+
+const config$ = timer(0, 1000)
+    .pipe(
+        switchMap(() => getConfig()),
+        shareReplay()
+    );
+
+
+async function demo4() {
+
+    config$
+        .subscribe(config => console.log(config));
+
+
+}
+
+
+demo4();
 
 
 async function demo3() {
@@ -27,8 +56,6 @@ async function demo3() {
         });
 
 }
-
-demo3();
 
 
 function demo2() {
