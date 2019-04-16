@@ -38,8 +38,12 @@ export class RecipeRepository {
 
     }
 
+    /**
+     * @deprecated WIP
+     * @param recipe
+     */
     async removeRecipe(recipe) {
-
+        throw new Error('😱 Not implemented yet!');
     }
 
     private async _getDatabase() {
