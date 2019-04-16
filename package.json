@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "build": "tsc",
+    "start": "node src/index",
     "start:dev": "nodemon",
     "test": "jest",
     "test:watch": "jest --watch"
