@@ -22,7 +22,9 @@ export class RecipeRepository {
 
         const database = await this._getDatabase();
 
-        const dataList = await promisify(database.all.bind(database))('SELECT title, type FROM recipe');
+        const all = promisify(database.all.bind(database));
+
+        const dataList = await all('SELECT title, type FROM recipe');
 
         return dataList.map(data => new Recipe(data));
 
@@ -40,7 +42,9 @@ export class RecipeRepository {
 
         this._database = new Database(':memory:');
 
-        await promisify(this._database.run.bind(this._database))('CREATE TABLE IF NOT EXISTS recipe (title VARCHAR(255), type VARCHAR(255))');
+        const run = promisify(this._database.run.bind(this._database));
+
+        await run('CREATE TABLE IF NOT EXISTS recipe (title VARCHAR(255), type VARCHAR(255))');
 
         return this._database;
 
