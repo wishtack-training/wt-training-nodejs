@@ -5,6 +5,7 @@ import { Recipe } from './recipe';
 function promisifyDatabase(database: Database) {
     return {
         all: promisify(database.all.bind(database)),
+        each: database.each.bind(database),
         prepare: database.prepare.bind(database),
         run: promisify(database.run.bind(database))
     };
@@ -14,6 +15,7 @@ export class RecipeRepository {
 
     private _database: {
         all,
+        each,
         prepare,
         run
     };
