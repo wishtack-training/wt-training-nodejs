@@ -1,4 +1,6 @@
-import { Database, Statement } from 'sqlite3';
+import { from, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Database } from 'sqlite3';
 import { promisify } from 'util';
 import { Recipe } from './recipe';
 
@@ -62,6 +64,38 @@ export class RecipeRepository {
             .run('CREATE TABLE IF NOT EXISTS recipe (title VARCHAR(255), type VARCHAR(255))');
 
         return this._database = promisifiedDatabase;
+
+    }
+
+    getRecipes(): Observable<Recipe> {
+
+        // from(this._getDatabase())
+        //     .pipe(
+        //         map(database => {
+        //
+        //         })
+        //     )
+
+        return new Observable(observer => {
+
+            this._database.each('SELECT title, type FROM recipe',
+                (err, data) => {
+
+                    if (err) {
+                        observer.error(err);
+                    }
+
+                    observer.next(data);
+                },
+                () => {
+                    observer.complete();
+                });
+
+        })
+            .pipe(
+                map(data => new Recipe(data))
+            );
+
 
     }
 
