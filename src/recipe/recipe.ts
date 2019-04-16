@@ -13,7 +13,7 @@ export class Recipe {
     constructor(args: Partial<Recipe> = {}) {
         this.title = args.title;
         this.type = args.type;
-        this.ingredientList = args.ingredientList;
+        this.ingredientList = args.ingredientList || [];
     }
 
 }

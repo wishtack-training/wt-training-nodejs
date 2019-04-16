@@ -10,7 +10,7 @@ export const recipeRepository = new RecipeRepository();
 recipeRouter.get('/', asyncHandler(async (request, response) => {
 
     response.send({
-        data: recipeRepository.getRecipeList()
+        data: await recipeRepository.getRecipeList()
     });
 
 }));

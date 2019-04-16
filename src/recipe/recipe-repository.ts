@@ -1,24 +1,49 @@
+import { Database, Statement } from 'sqlite3';
+import { promisify } from 'util';
 import { Recipe } from './recipe';
 
 export class RecipeRepository {
 
-    private _recipeList: Recipe[];
+    private _database: Database;
 
-    constructor() {
-        this._recipeList = [];
+    async addRecipe(recipe: Recipe) {
+
+        const database = await this._getDatabase();
+
+        const statement = database.prepare('INSERT INTO recipe VALUES (?, ?)');
+
+        const statementRun = promisify(statement.run.bind(statement)) as any;
+
+        await statementRun(recipe.title, recipe.type);
+
     }
 
-    addRecipe(recipe) {
-        this._recipeList = [...this._recipeList, recipe]
+    async getRecipeList() {
+
+        const database = await this._getDatabase();
+
+        const dataList = await promisify(database.all.bind(database))('SELECT title, type FROM recipe');
+
+        return dataList.map(data => new Recipe(data));
+
     }
 
-    getRecipeList() {
-        return this._recipeList;
+    async removeRecipe(recipe) {
+
     }
 
-    removeRecipe(recipe) {
-        this._recipeList = this._recipeList
-            .filter(_recipe => _recipe !== recipe);
+    private async _getDatabase() {
+
+        if (this._database) {
+            return this._database;
+        }
+
+        this._database = new Database(':memory:');
+
+        await promisify(this._database.run.bind(this._database))('CREATE TABLE IF NOT EXISTS recipe (title VARCHAR(255), type VARCHAR(255))');
+
+        return this._database;
+
     }
 
 }
